@@ -54,6 +54,19 @@ class DoctorProfileCreate(BaseModel):
     is_available: bool = True
 
 
+class DoctorOnboard(BaseModel):
+    full_name: str = Field(min_length=2, max_length=160)
+    email: EmailStr
+    password: str = Field(min_length=6)
+    phone: str | None = None
+    preferred_language: str = "en"
+    department_id: str
+    specialization: str | None = None
+    bio: str | None = None
+    consultation_fee: float | None = None
+
+
+
 class DoctorProfileRead(BaseModel):
     id: str
     user_id: str

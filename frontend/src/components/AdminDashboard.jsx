@@ -273,7 +273,7 @@ export function AdminDashboard({ user, logout, activeSubView, onNavigate }) {
   const [doctorModal, setDoctorModal]   = useState(false);
   const [schedModal, setSchedModal]     = useState(false);
   const [deptForm, setDeptForm]         = useState({ name: '', description: '' });
-  const [doctorForm, setDoctorForm]     = useState({ user_id: '', department_id: '', specialization: '', bio: '', consultation_fee: 5000 });
+  const [doctorForm, setDoctorForm]     = useState({ full_name: '', email: '', password: '', phone: '', department_id: '', specialization: '', bio: '', consultation_fee: 5000 });
   const [schedForm, setSchedForm]       = useState({ doctor_id: '', day_of_week: 1, start_time: '09:00', end_time: '17:00', slot_minutes: 30 });
 
   const showToast = (type, message) => {
@@ -368,7 +368,7 @@ export function AdminDashboard({ user, logout, activeSubView, onNavigate }) {
     try {
       await api.post('/doctors', doctorForm);
       setDoctorModal(false);
-      setDoctorForm({ user_id: '', department_id: '', specialization: '', bio: '', consultation_fee: 5000 });
+      setDoctorForm({ full_name: '', email: '', password: '', phone: '', department_id: '', specialization: '', bio: '', consultation_fee: 5000 });
       showToast('ok', t('admin.toast.doctorCreated'));
       loadAll();
     } catch (err) { showToast('err', err.response?.data?.detail || t('admin.toast.doctorCreateError')); }
@@ -843,18 +843,34 @@ export function AdminDashboard({ user, logout, activeSubView, onNavigate }) {
 
       {doctorModal && (
         <Modal title="Register Clinician Profile" onClose={() => setDoctorModal(false)}>
-          <form onSubmit={createDoctor} className="space-y-4">
-            <FormField label="Existing User UUID" hint='User must be registered with role "doctor"'>
-              <input required className={fieldClass} placeholder="550e8400-e29b-41d4-a716-..."
-                value={doctorForm.user_id} onChange={e => setDoctorForm({ ...doctorForm, user_id: e.target.value })} />
+          <form onSubmit={createDoctor} className="space-y-4 max-h-[75vh] overflow-y-auto pr-1">
+            <FormField label="Full Name">
+              <input required className={fieldClass} placeholder="Dr. First Last"
+                value={doctorForm.full_name} onChange={e => setDoctorForm({ ...doctorForm, full_name: e.target.value })} />
             </FormField>
-            <FormField label="Department">
-              <select required className={fieldClass}
-                value={doctorForm.department_id} onChange={e => setDoctorForm({ ...doctorForm, department_id: e.target.value })}>
-                <option value="">Select Department</option>
-                {departments.map(d => <option key={d.id} value={d.id}>{d.name}</option>)}
-              </select>
-            </FormField>
+            <div className="grid grid-cols-2 gap-4">
+              <FormField label="Email Address">
+                <input type="email" required className={fieldClass} placeholder="doctor@hospital.com"
+                  value={doctorForm.email} onChange={e => setDoctorForm({ ...doctorForm, email: e.target.value })} />
+              </FormField>
+              <FormField label="Password">
+                <input type="password" required className={fieldClass} placeholder="••••••••"
+                  value={doctorForm.password} onChange={e => setDoctorForm({ ...doctorForm, password: e.target.value })} />
+              </FormField>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <FormField label="Phone Number">
+                <input className={fieldClass} placeholder="e.g. 08012345678"
+                  value={doctorForm.phone} onChange={e => setDoctorForm({ ...doctorForm, phone: e.target.value })} />
+              </FormField>
+              <FormField label="Department">
+                <select required className={fieldClass}
+                  value={doctorForm.department_id} onChange={e => setDoctorForm({ ...doctorForm, department_id: e.target.value })}>
+                  <option value="">Select Department</option>
+                  {departments.map(d => <option key={d.id} value={d.id}>{d.name}</option>)}
+                </select>
+              </FormField>
+            </div>
             <div className="grid grid-cols-2 gap-4">
               <FormField label="Specialization">
                 <input className={fieldClass} placeholder="e.g. Cardiology"

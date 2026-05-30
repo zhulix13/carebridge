@@ -20,6 +20,7 @@ from .schemas import (
     DepartmentRead,
     DoctorCardRead,
     DoctorProfileCreate,
+    DoctorOnboard,
     DoctorProfileRead,
     DoctorScheduleCreate,
     DoctorScheduleRead,
@@ -109,26 +110,46 @@ def list_departments(db: Session = Depends(get_db)) -> list[Department]:
 
 
 @app.post("/doctors", response_model=DoctorProfileRead, status_code=status.HTTP_201_CREATED)
-def create_doctor_profile(
-    payload: DoctorProfileCreate,
+def onboard_doctor(
+    payload: DoctorOnboard,
     _: User = Depends(require_admin),
     db: Session = Depends(get_db),
 ) -> DoctorProfile:
-    user = db.get(User, payload.user_id)
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    if user.role != "doctor":
-        raise HTTPException(status_code=400, detail="User must have doctor role")
+    # Check if department exists
     if not db.get(Department, payload.department_id):
         raise HTTPException(status_code=404, detail="Department not found")
-    if db.scalar(select(DoctorProfile).where(DoctorProfile.user_id == payload.user_id)):
-        raise HTTPException(status_code=409, detail="Doctor profile already exists for this user")
 
-    doctor = DoctorProfile(**payload.model_dump())
+    # Check if user email is registered
+    existing_user = db.scalar(select(User).where(User.email == payload.email.lower()))
+    if existing_user:
+        raise HTTPException(status_code=409, detail="Email already registered")
+
+    # Create user account for doctor
+    user = User(
+        full_name=payload.full_name,
+        email=payload.email.lower(),
+        password_hash=hash_password(payload.password),
+        phone=payload.phone,
+        preferred_language=payload.preferred_language,
+        role="doctor",
+    )
+    db.add(user)
+    db.flush()  # get the newly generated UUID
+
+    # Create doctor profile
+    doctor = DoctorProfile(
+        user_id=user.id,
+        department_id=payload.department_id,
+        specialization=payload.specialization,
+        bio=payload.bio,
+        consultation_fee=payload.consultation_fee,
+        is_available=True,
+    )
     db.add(doctor)
     db.commit()
     db.refresh(doctor)
     return doctor
+
 
 
 @app.get("/doctors", response_model=list[DoctorCardRead])
