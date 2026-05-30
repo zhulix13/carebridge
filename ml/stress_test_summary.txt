@@ -1,0 +1,31 @@
+Stress test summary
+===================
+
+Total samples: 60
+Correct: 58
+Accuracy: 0.9667
+
+Accuracy by case type:
+                       count  sum  mean
+case_type                              
+ambiguous                  4    4   1.0
+ambiguous_code_switch      1    0   0.0
+ambiguous_health           1    0   0.0
+casual_input               1    1   1.0
+casual_symptom             1    1   1.0
+code_switching            12   12   1.0
+diacritics                 1    1   1.0
+lowercase                  1    1   1.0
+no_diacritics             18   18   1.0
+pidgin_like                1    1   1.0
+short_input                6    6   1.0
+standard                   9    9   1.0
+symptom_phrase             1    1   1.0
+technical_short            1    1   1.0
+typo_casual                1    1   1.0
+urgent                     1    1   1.0
+
+Mistakes:
+sample_id               text expected_language predicted_language             case_type                              notes
+    ST044 dokita appointment            yoruba            english ambiguous_code_switch  Could be Yoruba or mixed English.
+    ST053        iba malaria            yoruba            english      ambiguous_health Yoruba/health phrase with malaria.

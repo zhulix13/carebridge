@@ -1,0 +1,72 @@
+# ==============================================================================
+# Monorepo .gitignore
+# For Multilingual Hospital Appointment Booking System (React & FastAPI)
+# ==============================================================================
+
+# --- Databases ---
+# We ignore the local SQLite database file to avoid merge conflicts and binary clutter.
+# Production starts fresh and runs database migrations and seeds automatically.
+*.db
+*.sqlite3
+hospital.db
+backend/hospital.db
+
+.codex_pptx_copy.pptx
+.codex_pptx_extract/
+# --- Environment Variables & Secrets ---
+# Never commit credentials or local overrides to git.
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env
+
+# --- Node / Frontend dependencies & builds ---
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+build/
+.eslintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Python / Backend virtual environments & compilation ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+backend/env/
+backend/venv/
+backend/.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.toast
+.pyre/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# --- IDEs, Editors & OS Files ---
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# --- ML Artifacts ---
+# We DO NOT ignore ml/language_model.pkl because it is required for deployment.
+# If you add very large training datasets or temporary models, you can ignore them below:
+ml/__pycache__/
+ml/raw/
+# !ml/language_model.pkl (Explicitly ensure the compiled ML model is not ignored)

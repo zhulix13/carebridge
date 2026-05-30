@@ -1,0 +1,201 @@
+sample_id,text,language,case_type,domain,notes
+MST001,mo need doctor,yoruba,code_switching,appointment,Yoruba-English mixed appointment request
+MST002,mo need dokita today,yoruba,code_switching,appointment,Yoruba-English mixed doctor request
+MST003,mo fe see doctor,yoruba,code_switching,appointment,Yoruba-English mixed phrase
+MST004,mo fe book appointment,yoruba,code_switching,appointment,Yoruba-English booking phrase
+MST005,mo want appointment pelu dokita,yoruba,code_switching,appointment,Yoruba with English appointment terms
+MST006,mo need hospital now,yoruba,code_switching,emergency,Yoruba-English urgent phrase
+MST007,mo have iba,yoruba,code_switching,symptoms,Yoruba fever term mixed with English
+MST008,ori mi is paining me,yoruba,code_switching,symptoms,Yoruba-English headache phrase
+MST009,inu mi pain since morning,yoruba,code_switching,symptoms,Yoruba-English stomach pain phrase
+MST010,mo need eye clinic,yoruba,code_switching,departments,Yoruba-English clinic request
+MST011,mo need blood test,yoruba,code_switching,diagnostics,Yoruba-English test request
+MST012,mo want scan today,yoruba,code_switching,diagnostics,Yoruba-English scan request
+MST013,mo need medicine refill,yoruba,code_switching,medication,Yoruba-English refill request
+MST014,mo forgot my medicine,yoruba,code_switching,medication,Yoruba-English medication phrase
+MST015,mo need checkup for diabetes,yoruba,code_switching,chronic_care,Yoruba-English diabetes checkup
+MST016,mo want check blood pressure,yoruba,code_switching,chronic_care,Yoruba-English blood pressure request
+MST017,mo need antenatal care,yoruba,code_switching,maternal_child,Yoruba-English antenatal request
+MST018,omo mi has fever,yoruba,code_switching,maternal_child,Yoruba-English child fever phrase
+MST019,mo need urgent help,yoruba,code_switching,emergency,Yoruba-English urgent phrase
+MST020,mo cannot breathe well,yoruba,code_switching,emergency,Yoruba-English breathing emergency
+MST021,mo fe ri dokita,yoruba,no_diacritics,appointment,Yoruba without diacritics
+MST022,mo fe se ipade pelu dokita,yoruba,no_diacritics,appointment,Yoruba without diacritics
+MST023,mo nilo lati ri dokita loni,yoruba,no_diacritics,appointment,Yoruba without diacritics
+MST024,akoko wo ni dokita wa,yoruba,no_diacritics,appointment,Yoruba without diacritics
+MST025,mo fe fagile ipade mi,yoruba,no_diacritics,appointment,Yoruba without diacritics
+MST026,se mo le yi ipade mi pada si friday,yoruba,no_diacritics,appointment,Yoruba mixed no-diacritic phrase
+MST027,eka wo ni n toju oju,yoruba,no_diacritics,departments,Yoruba department phrase
+MST028,mo ni iba,yoruba,no_diacritics,symptoms,Yoruba fever phrase
+MST029,ori mi n dun gan,yoruba,no_diacritics,symptoms,Yoruba headache phrase
+MST030,inu mi n dun lati ana,yoruba,no_diacritics,symptoms,Yoruba stomach pain phrase
+MST031,aya mi n dun,yoruba,no_diacritics,symptoms,Yoruba chest pain phrase
+MST032,emi mi n mi soro,yoruba,no_diacritics,symptoms,Yoruba breathing difficulty
+MST033,mo n yi mi ninu nigbati mo dide,yoruba,no_diacritics,symptoms,Yoruba dizziness phrase
+MST034,mo ti n bi lati owuro,yoruba,no_diacritics,symptoms,Yoruba vomiting phrase
+MST035,mo ni gbuuru ati ailera,yoruba,no_diacritics,symptoms,Yoruba diarrhea phrase
+MST036,iko mi ko lo,yoruba,no_diacritics,symptoms,Yoruba cough phrase
+MST037,egbe mi n dun,yoruba,no_diacritics,symptoms,Yoruba back pain phrase
+MST038,egungun mi n dun,yoruba,no_diacritics,symptoms,Yoruba bone pain phrase
+MST039,apapo mi wu o si n dun,yoruba,no_diacritics,symptoms,Yoruba joint swelling
+MST040,mo ni irora nigba ti mo n to ito,yoruba,no_diacritics,urinary,Yoruba urinary symptom
+MST041,ina need doctor,hausa,code_switching,appointment,Hausa-English mixed doctor request
+MST042,ina need likita today,hausa,code_switching,appointment,Hausa-English mixed phrase
+MST043,ina son see doctor,hausa,code_switching,appointment,Hausa-English doctor phrase
+MST044,ina son book appointment,hausa,code_switching,appointment,Hausa-English booking phrase
+MST045,ina want appointment da likita,hausa,code_switching,appointment,Hausa-English appointment phrase
+MST046,ina need hospital now,hausa,code_switching,emergency,Hausa-English urgent phrase
+MST047,ina have zazzabi,hausa,code_switching,symptoms,Hausa fever term mixed with English
+MST048,kaina is paining me,hausa,code_switching,symptoms,Hausa-English headache phrase
+MST049,cikina pain since morning,hausa,code_switching,symptoms,Hausa-English stomach pain phrase
+MST050,ina need eye clinic,hausa,code_switching,departments,Hausa-English clinic request
+MST051,ina need blood test,hausa,code_switching,diagnostics,Hausa-English test request
+MST052,ina want scan today,hausa,code_switching,diagnostics,Hausa-English scan request
+MST053,ina need medicine refill,hausa,code_switching,medication,Hausa-English refill request
+MST054,na manta medicine dina,hausa,code_switching,medication,Hausa-English medication phrase
+MST055,ina need checkup for diabetes,hausa,code_switching,chronic_care,Hausa-English diabetes checkup
+MST056,ina want check blood pressure,hausa,code_switching,chronic_care,Hausa-English blood pressure request
+MST057,ina need antenatal care,hausa,code_switching,maternal_child,Hausa-English antenatal request
+MST058,yaro na has fever,hausa,code_switching,maternal_child,Hausa-English child fever phrase
+MST059,ina need urgent help,hausa,code_switching,emergency,Hausa-English urgent phrase
+MST060,ba na iya breathe well,hausa,code_switching,emergency,Hausa-English breathing emergency
+MST061,ina son ganin likita,hausa,no_diacritics,appointment,Hausa standard phrase
+MST062,ina son yin alawari da likita,hausa,no_diacritics,appointment,Hausa appointment phrase
+MST063,ina bukatar ganin likita yau,hausa,no_diacritics,appointment,Hausa doctor request
+MST064,wani lokaci likita zai samu,hausa,no_diacritics,appointment,Hausa availability question
+MST065,ina son soke alawari na,hausa,no_diacritics,appointment,Hausa cancellation phrase
+MST066,zan iya canza alawari na zuwa friday,hausa,no_diacritics,appointment,Hausa mixed reschedule phrase
+MST067,wane sashe ne ke kula da ciwon ido,hausa,no_diacritics,departments,Hausa department phrase
+MST068,ina da zazzabi,hausa,no_diacritics,symptoms,Hausa fever phrase
+MST069,kaina yana ciwo sosai,hausa,no_diacritics,symptoms,Hausa headache phrase
+MST070,cikina yana ciwo tun jiya,hausa,no_diacritics,symptoms,Hausa stomach pain phrase
+MST071,kirjina yana ciwo,hausa,no_diacritics,symptoms,Hausa chest pain phrase
+MST072,ina wahalar numfashi,hausa,no_diacritics,symptoms,Hausa breathing difficulty
+MST073,ina jin jiri idan na tashi,hausa,no_diacritics,symptoms,Hausa dizziness phrase
+MST074,ina amai tun safe,hausa,no_diacritics,symptoms,Hausa vomiting phrase
+MST075,ina da gudawa da rauni,hausa,no_diacritics,symptoms,Hausa diarrhea phrase
+MST076,tari na bai daina ba,hausa,no_diacritics,symptoms,Hausa cough phrase
+MST077,bayana yana ciwo,hausa,no_diacritics,symptoms,Hausa back pain phrase
+MST078,kashina yana ciwo,hausa,no_diacritics,symptoms,Hausa bone pain phrase
+MST079,gabobina sun kumbura kuma suna ciwo,hausa,no_diacritics,symptoms,Hausa joint swelling
+MST080,ina jin zafi lokacin fitsari,hausa,no_diacritics,urinary,Hausa urinary symptom
+MST081,achoro doctor now,igbo,code_switching,appointment,Igbo-English mixed doctor request
+MST082,achoro m see doctor,igbo,code_switching,appointment,Igbo-English doctor phrase
+MST083,achoro m book appointment,igbo,code_switching,appointment,Igbo-English booking phrase
+MST084,achoro m appointment na doctor,igbo,code_switching,appointment,Igbo-English appointment phrase
+MST085,achoro m hospital now,igbo,code_switching,emergency,Igbo-English urgent phrase
+MST086,ahu m has fever,igbo,code_switching,symptoms,Igbo-English fever phrase
+MST087,isi m is paining me,igbo,code_switching,symptoms,Igbo-English headache phrase
+MST088,afo m pain since morning,igbo,code_switching,symptoms,Igbo-English stomach pain phrase
+MST089,achoro m eye clinic,igbo,code_switching,departments,Igbo-English clinic request
+MST090,achoro m blood test,igbo,code_switching,diagnostics,Igbo-English test request
+MST091,achoro m scan today,igbo,code_switching,diagnostics,Igbo-English scan request
+MST092,achoro m medicine refill,igbo,code_switching,medication,Igbo-English refill request
+MST093,echefuru m medicine m,igbo,code_switching,medication,Igbo-English medication phrase
+MST094,achoro m checkup for diabetes,igbo,code_switching,chronic_care,Igbo-English diabetes checkup
+MST095,achoro m check blood pressure,igbo,code_switching,chronic_care,Igbo-English blood pressure request
+MST096,achoro m antenatal care,igbo,code_switching,maternal_child,Igbo-English antenatal request
+MST097,nwa m has fever,igbo,code_switching,maternal_child,Igbo-English child fever phrase
+MST098,achoro m urgent help,igbo,code_switching,emergency,Igbo-English urgent phrase
+MST099,enweghi m ike breathe well,igbo,code_switching,emergency,Igbo-English breathing emergency
+MST100,achoro m post surgery follow up,igbo,code_switching,appointment,Igbo-English follow-up phrase
+MST101,achoro m ihu dokita,igbo,no_diacritics,appointment,Igbo without diacritics
+MST102,achoro m ide oge na ulo ogwu,igbo,no_diacritics,appointment,Igbo appointment phrase
+MST103,achoro m ihu dokita taa,igbo,no_diacritics,appointment,Igbo doctor request
+MST104,kedu oge dokita di,igbo,no_diacritics,appointment,Igbo availability question
+MST105,achoro m ikagbu oge m,igbo,no_diacritics,appointment,Igbo cancellation phrase
+MST106,enwere m ike ibugharị oge m na friday,igbo,no_diacritics,appointment,Igbo mixed reschedule phrase
+MST107,kedu ngalaba na ele nsogbu anya,igbo,no_diacritics,departments,Igbo department phrase
+MST108,ahu oku na eme m,igbo,no_diacritics,symptoms,Igbo fever phrase
+MST109,isi m na awa m nke ukwuu,igbo,no_diacritics,symptoms,Igbo headache phrase
+MST110,afo m na afu m kemgbe unyaahu,igbo,no_diacritics,symptoms,Igbo stomach pain phrase
+MST111,obi m na afu m,igbo,no_diacritics,symptoms,Igbo chest pain phrase
+MST112,o na esiri m ike iku ume,igbo,no_diacritics,symptoms,Igbo breathing difficulty
+MST113,isi na agba m mgbe m biliri,igbo,no_diacritics,symptoms,Igbo dizziness phrase
+MST114,ana m agbọ agbọ kemgbe ututu,igbo,no_diacritics,symptoms,Igbo vomiting phrase
+MST115,enwere m afo osisa na adighi ike,igbo,no_diacritics,symptoms,Igbo diarrhea phrase
+MST116,ukwara m agaghi akwụsị,igbo,no_diacritics,symptoms,Igbo cough phrase
+MST117,azu m na afu m,igbo,no_diacritics,symptoms,Igbo back pain phrase
+MST118,okpukpu m na afu m,igbo,no_diacritics,symptoms,Igbo bone pain phrase
+MST119,nkwonkwo m azaala ma na afu m,igbo,no_diacritics,symptoms,Igbo joint swelling
+MST120,ana m enwe mgbu mgbe m na anyu mamiri,igbo,no_diacritics,urinary,Igbo urinary symptom
+MST121,doctor appointment,english,short_input,appointment,Short English appointment phrase
+MST122,need doctor now,english,short_input,appointment,Short English urgent request
+MST123,book appointment for me,english,short_input,appointment,Short English booking request
+MST124,see doctor today,english,short_input,appointment,Short English doctor request
+MST125,hospital now please,english,short_input,emergency,Short English urgent phrase
+MST126,fever since morning,english,short_input,symptoms,Short English fever phrase
+MST127,headache and vomiting,english,short_input,symptoms,Short English symptoms
+MST128,stomach pain since yesterday,english,short_input,symptoms,Short English stomach pain
+MST129,chest pain when walking,english,short_input,symptoms,Short English chest pain
+MST130,cannot breathe well,english,short_input,emergency,Short English breathing emergency
+MST131,eye clinic appointment,english,short_input,departments,Short English clinic request
+MST132,blood test today,english,short_input,diagnostics,Short English test request
+MST133,ultrasound scan booking,english,short_input,diagnostics,Short English scan request
+MST134,medicine refill please,english,short_input,medication,Short English refill request
+MST135,forgot my medication,english,short_input,medication,Short English medication phrase
+MST136,diabetes checkup appointment,english,short_input,chronic_care,Short English diabetes checkup
+MST137,check my blood pressure,english,short_input,chronic_care,Short English blood pressure request
+MST138,antenatal care booking,english,short_input,maternal_child,Short English antenatal request
+MST139,my child has high fever,english,short_input,maternal_child,Short English child fever
+MST140,urgent help for bleeding,english,short_input,emergency,Short English emergency phrase
+MST141,my belle dey pain me,english,pidgin_like,symptoms,Nigerian pidgin-like stomach pain
+MST142,i wan see doctor today,english,pidgin_like,appointment,Nigerian pidgin-like doctor request
+MST143,abeg book appointment for me,english,pidgin_like,appointment,Nigerian pidgin-like booking request
+MST144,my pikin get fever,english,pidgin_like,maternal_child,Nigerian pidgin-like child fever
+MST145,i no fit breathe well,english,pidgin_like,emergency,Nigerian pidgin-like breathing phrase
+MST146,my head dey pain me,english,pidgin_like,symptoms,Nigerian pidgin-like headache
+MST147,i dey vomit since morning,english,pidgin_like,symptoms,Nigerian pidgin-like vomiting
+MST148,i need malaria test,english,casual_health,diagnostics,Casual English malaria test request
+MST149,can i do xray today,english,casual_health,diagnostics,Casual English x-ray request
+MST150,my bp is high,english,casual_health,chronic_care,Casual English blood pressure phrase
+MST151,dokita,yoruba,ambiguous_health,appointment,Yoruba doctor loanword
+MST152,dokita appointment,yoruba,ambiguous_code_switch,appointment,Yoruba doctor with English appointment
+MST153,mo fe dokita,yoruba,ambiguous_health,appointment,Yoruba doctor request
+MST154,ile iwosan,yoruba,ambiguous_health,appointment,Yoruba hospital phrase
+MST155,iba,yoruba,ambiguous_health,symptoms,Yoruba fever word
+MST156,ori mi,yoruba,ambiguous_health,symptoms,Yoruba head phrase
+MST157,irora oju,yoruba,ambiguous_health,symptoms,Yoruba eye pain
+MST158,ito n dun,yoruba,ambiguous_health,urinary,Yoruba urinary pain
+MST159,eje ninu ito,yoruba,ambiguous_health,urinary,Yoruba blood in urine
+MST160,omo mi n sakit,yoruba,code_switching,maternal_child,Yoruba mixed with informal sick word
+MST161,likita,hausa,ambiguous_health,appointment,Hausa doctor word
+MST162,likita appointment,hausa,ambiguous_code_switch,appointment,Hausa doctor with English appointment
+MST163,ina son likita,hausa,ambiguous_health,appointment,Hausa doctor request
+MST164,asibiti,hausa,ambiguous_health,appointment,Hausa hospital word
+MST165,zazzabi,hausa,ambiguous_health,symptoms,Hausa fever word
+MST166,kaina,hausa,ambiguous_health,symptoms,Hausa head word
+MST167,ciwon ido,hausa,ambiguous_health,symptoms,Hausa eye pain
+MST168,ciwon fitsari,hausa,ambiguous_health,urinary,Hausa urinary pain
+MST169,jini a fitsari,hausa,ambiguous_health,urinary,Hausa blood in urine
+MST170,yaro na sick,hausa,code_switching,maternal_child,Hausa mixed with English sick word
+MST171,dokita,igbo,ambiguous_health,appointment,Igbo doctor loanword
+MST172,dokita appointment,igbo,ambiguous_code_switch,appointment,Igbo doctor with English appointment
+MST173,achoro dokita,igbo,ambiguous_health,appointment,Igbo doctor request
+MST174,ulo ogwu,igbo,ambiguous_health,appointment,Igbo hospital phrase
+MST175,oria,igbo,ambiguous_health,symptoms,Igbo illness word
+MST176,isi m,igbo,ambiguous_health,symptoms,Igbo head phrase
+MST177,mgbu anya,igbo,ambiguous_health,symptoms,Igbo eye pain
+MST178,mgbu mamiri,igbo,ambiguous_health,urinary,Igbo urinary pain
+MST179,obara na mamiri,igbo,ambiguous_health,urinary,Igbo blood in urine
+MST180,nwa m sick,igbo,code_switching,maternal_child,Igbo mixed with English sick word
+MST181,mo ni chest pain,yoruba,code_switching,symptoms,Yoruba-English chest pain
+MST182,mo ni cough ati fever,yoruba,code_switching,symptoms,Yoruba-English cough fever
+MST183,mo need lab result,yoruba,code_switching,diagnostics,Yoruba-English lab result
+MST184,mo need prescription,yoruba,code_switching,medication,Yoruba-English prescription
+MST185,mo need referral letter,yoruba,code_switching,admin,Yoruba-English referral request
+MST186,ina da chest pain,hausa,code_switching,symptoms,Hausa-English chest pain
+MST187,ina da cough da fever,hausa,code_switching,symptoms,Hausa-English cough fever
+MST188,ina need lab result,hausa,code_switching,diagnostics,Hausa-English lab result
+MST189,ina need prescription,hausa,code_switching,medication,Hausa-English prescription
+MST190,ina need referral letter,hausa,code_switching,admin,Hausa-English referral request
+MST191,achoro m chest pain check,igbo,code_switching,symptoms,Igbo-English chest pain check
+MST192,achoro m cough na fever check,igbo,code_switching,symptoms,Igbo-English cough fever
+MST193,achoro m lab result,igbo,code_switching,diagnostics,Igbo-English lab result
+MST194,achoro m prescription,igbo,code_switching,medication,Igbo-English prescription
+MST195,achoro m referral letter,igbo,code_switching,admin,Igbo-English referral request
+MST196,my wound has pus,english,casual_health,symptoms,English wound infection phrase
+MST197,my urine has blood,english,casual_health,urinary,English urinary phrase
+MST198,my eye is swollen,english,casual_health,symptoms,English eye symptom
+MST199,my heart is beating fast,english,casual_health,symptoms,English palpitation phrase
+MST200,my throat hurts when swallowing,english,casual_health,symptoms,English throat symptom

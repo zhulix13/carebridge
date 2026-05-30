@@ -1,0 +1,61 @@
+sample_id,text,expected_language,case_type,notes
+ST001,fever,english,short_input,Single symptom word may be ambiguous.
+ST002,doctor appointment,english,short_input,Short English booking phrase.
+ST003,I need doctor abeg,english,code_switching,English with Nigerian informal expression.
+ST004,book me for tomorrow morning,english,casual_input,Casual appointment request.
+ST005,my belle dey pain me,english,pidgin_like,Pidgin-like input may confuse the four-language classifier.
+ST006,I have chest pain and cough,english,symptom_phrase,Simple English symptoms.
+ST007,pls I want see doctor today,english,typo_casual,Informal English with missing words.
+ST008,160 over 100 blood pressure,english,technical_short,Numeric clinical phrase.
+ST009,my child has fever since night,english,casual_symptom,Common user-style English.
+ST010,can i do scan today,english,lowercase,Lowercase short diagnostic request.
+ST011,mo fe ri dokita,yoruba,no_diacritics,Yoruba without diacritics.
+ST012,mo ni iba,yoruba,no_diacritics,Short Yoruba symptom phrase without diacritics.
+ST013,ori mi n dun gan,yoruba,no_diacritics,Yoruba headache phrase without diacritics.
+ST014,mo fe appointment pelu dokita,yoruba,code_switching,Yoruba mixed with English appointment word.
+ST015,inu mi n dun lati ana,yoruba,no_diacritics,Yoruba stomach pain phrase without diacritics.
+ST016,e jowo mo nilo iranlowo,yoruba,no_diacritics,Yoruba help request without diacritics.
+ST017,omo mi ni iba giga,yoruba,no_diacritics,Yoruba child fever phrase.
+ST018,mo fe lo si eye clinic,yoruba,code_switching,Yoruba mixed with English department term.
+ST019,ipade mi ti confirm?,yoruba,code_switching,Yoruba with English confirm.
+ST020,mo n ni irora nigba ti mo ba n to ito,yoruba,no_diacritics,Yoruba urinary symptom without diacritics.
+ST021,ina son ganin likita,hausa,standard,Common Hausa doctor request.
+ST022,ina da zazzabi,hausa,short_input,Short Hausa fever phrase.
+ST023,kaina yana ciwo sosai,hausa,standard,Hausa headache phrase.
+ST024,ina son booking da doctor,hausa,code_switching,Hausa mixed with English booking and doctor.
+ST025,cikina yana ciwo tun jiya,hausa,standard,Hausa stomach pain phrase.
+ST026,don Allah ina bukatar taimako,hausa,standard,Hausa urgent help request.
+ST027,yarona yana da zazzabi mai tsanani,hausa,standard,Hausa child fever phrase.
+ST028,ina son zuwa eye clinic,hausa,code_switching,Hausa mixed with English clinic term.
+ST029,alƙawari na ya tabbata?,hausa,diacritics,Hausa appointment confirmation with special character.
+ST030,ina jin zafi lokacin fitsari,hausa,standard,Hausa urinary symptom.
+ST031,achoro m ihu dokita,igbo,no_diacritics,Igbo without diacritics.
+ST032,ahu oku na eme m,igbo,no_diacritics,Igbo fever-like phrase without diacritics.
+ST033,isi na awa m nke ukwuu,igbo,no_diacritics,Igbo headache phrase without diacritics.
+ST034,achoro m appointment na doctor,igbo,code_switching,Igbo mixed with English appointment and doctor.
+ST035,afo na afu m kemgbe unyaahu,igbo,no_diacritics,Igbo stomach pain phrase without diacritics.
+ST036,biko achoro m enyemaka ngwa ngwa,igbo,no_diacritics,Igbo urgent help phrase.
+ST037,nwa m nwere nnukwu fever,igbo,code_switching,Igbo mixed with English fever.
+ST038,achoro m iga eye clinic,igbo,code_switching,Igbo mixed with English clinic term.
+ST039,edebela oge m?,igbo,no_diacritics,Igbo appointment confirmation phrase.
+ST040,ana m enwe mgbu mgbe m na anyu mamiri,igbo,no_diacritics,Igbo urinary symptom without diacritics.
+ST041,doctor,english,ambiguous,Single English loanword appears in multiple languages.
+ST042,dokita,yoruba,ambiguous,Doctor loanword can appear across languages.
+ST043,likita,hausa,ambiguous,Doctor word common in Hausa and other contexts.
+ST044,dokita appointment,yoruba,ambiguous_code_switch,Could be Yoruba or mixed English.
+ST045,asibiti,hausa,ambiguous,Hausa hospital word may overlap with Nigerian usage.
+ST046,ile iwosan,yoruba,standard,Yoruba hospital phrase.
+ST047,ulo ogwu,igbo,no_diacritics,Igbo hospital phrase without diacritics.
+ST048,hospital appointment,english,short_input,English phrase.
+ST049,mo need doctor,yoruba,code_switching,Yoruba-English code-switch.
+ST050,ina need doctor,hausa,code_switching,Hausa-English code-switch.
+ST051,achoro doctor now,igbo,code_switching,Igbo-English code-switch.
+ST052,malaria test,english,short_input,Common phrase across Nigeria.
+ST053,iba malaria,yoruba,ambiguous_health,Yoruba/health phrase with malaria.
+ST054,zazzabin malaria,hausa,standard,Hausa malaria phrase.
+ST055,oria malaria,igbo,no_diacritics,Igbo malaria phrase without diacritics.
+ST056,eye pain,english,short_input,Short English symptom.
+ST057,irora oju,yoruba,no_diacritics,Yoruba eye pain without diacritics.
+ST058,ciwon ido,hausa,standard,Hausa eye pain.
+ST059,mgbu anya,igbo,no_diacritics,Igbo eye pain without diacritics.
+ST060,help me i cannot breathe,english,urgent,Emergency English phrase.

@@ -1,0 +1,23 @@
+Strict healthcare holdout report
+================================
+
+Training data: all non-manual external corpus rows
+Test data: all manually translated healthcare rows only
+
+              precision    recall  f1-score   support
+
+     english     1.0000    0.9900    0.9950       200
+      yoruba     0.9950    1.0000    0.9975       200
+       hausa     0.9950    1.0000    0.9975       200
+        igbo     1.0000    1.0000    1.0000       200
+
+    accuracy                         0.9975       800
+   macro avg     0.9975    0.9975    0.9975       800
+weighted avg     0.9975    0.9975    0.9975       800
+
+
+Confusion matrix labels: ['english', 'yoruba', 'hausa', 'igbo']
+[[198   1   1   0]
+ [  0 200   0   0]
+ [  0   0 200   0]
+ [  0   0   0 200]]
