@@ -28,6 +28,7 @@ class User(Base):
     appointments: Mapped[list["Appointment"]] = relationship(back_populates="patient")
     doctor_profile: Mapped["DoctorProfile | None"] = relationship(back_populates="user")
     language_detection_logs: Mapped[list["LanguageDetectionLog"]] = relationship(back_populates="user")
+    notifications: Mapped[list["Notification"]] = relationship(back_populates="user")
 
 
 class Department(Base):
@@ -113,3 +114,18 @@ class LanguageDetectionLog(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
 
     user: Mapped[User | None] = relationship(back_populates="language_detection_logs")
+
+
+class Notification(Base):
+    __tablename__ = "notifications"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid_str)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
+    appointment_id: Mapped[str | None] = mapped_column(ForeignKey("appointments.id"), nullable=True)
+    type: Mapped[str] = mapped_column(String(40))
+    title: Mapped[str] = mapped_column(String(160))
+    message: Mapped[str] = mapped_column(Text)
+    is_read: Mapped[bool] = mapped_column(Boolean, default=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+
+    user: Mapped[User] = relationship(back_populates="notifications")

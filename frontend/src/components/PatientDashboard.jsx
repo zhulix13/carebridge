@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 
 /* Tracks viewport width and re-renders on resize */
 function useWindowWidth() {
@@ -26,15 +26,18 @@ import {
   Sparkles,
   FileText,
   Bell,
+  CheckCircle2,
 } from "lucide-react";
 import { LanguageSelector } from "./LanguageSelector";
 import { BookingView } from "./BookingView";
 import { AppointmentsView } from "./AppointmentsView";
+import { api } from "../api";
 
 const NAV_ITEMS = [
   { id: "overview", label: "Overview", icon: LayoutDashboard },
   { id: "book", label: "Book Appointment", icon: CalendarCheck },
   { id: "appointments", label: "My Appointments", icon: CalendarDays },
+  { id: "notifications", label: "Notifications", icon: Bell },
   { id: "profile", label: "My Profile", icon: UserCircle2 },
 ];
 
@@ -108,6 +111,8 @@ function Sidebar({
                 ? "#/book"
                 : id === "appointments"
                   ? "#/my-appointments"
+                  : id === "notifications"
+                    ? "#/notifications"
                   : "#/profile";
           return (
             <button
@@ -283,6 +288,104 @@ function Overview({ user }) {
 }
 
 /* ─── Profile page ────────────────────────────────────────────────────────── */
+function NotificationsView({ onRead }) {
+  const { t } = useTranslation();
+  const [notifications, setNotifications] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    let active = true;
+
+    async function load() {
+      setLoading(true);
+      setMessage("");
+      const { data } = await api.get("/notifications");
+      if (!active) return;
+      setNotifications(data);
+      await api.patch("/notifications/read");
+      if (active) onRead?.();
+    }
+
+    load()
+      .catch(() => {
+        if (active) setMessage(t("notifications.loadError"));
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [onRead, t]);
+
+  return (
+    <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm animate-[fadeIn_0.2s_ease-out]">
+      <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-600">
+          <Bell size={18} />
+        </div>
+        <div>
+          <h2 className="text-base font-extrabold text-slate-900">{t("notifications.title")}</h2>
+          <p className="text-xs font-semibold text-slate-500">{t("notifications.subtitle")}</p>
+        </div>
+      </div>
+
+      <div className="mt-5 grid gap-3">
+        {loading ? (
+          <div className="rounded-xl border border-slate-100 bg-slate-50/60 p-8 text-center">
+            <p className="text-sm font-semibold text-slate-500">{t("common.loading")}</p>
+          </div>
+        ) : message ? (
+          <p className="rounded-xl border border-rose-100 bg-rose-50 px-4 py-3 text-sm font-bold text-rose-700">
+            {message}
+          </p>
+        ) : notifications.length === 0 ? (
+          <div className="rounded-xl border border-slate-100 bg-slate-50/60 p-8 text-center">
+            <Bell className="mx-auto mb-2 text-slate-400" size={30} />
+            <p className="text-sm font-semibold text-slate-500">{t("notifications.empty")}</p>
+          </div>
+        ) : (
+          notifications.map((notification) => (
+            <article
+              className={`rounded-xl border p-4 transition ${
+                notification.is_read
+                  ? "border-slate-100 bg-slate-50/50"
+                  : "border-blue-100 bg-blue-50/60"
+              }`}
+              key={notification.id}
+            >
+              <div className="flex items-start gap-3">
+                <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-blue-600">
+                  <CheckCircle2 size={16} />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="text-sm font-extrabold text-slate-900">{notification.title}</h3>
+                    {!notification.is_read && (
+                      <span className="rounded-full bg-blue-600 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-white">
+                        {t("notifications.new")}
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-1 text-sm font-medium leading-relaxed text-slate-600">{notification.message}</p>
+                  <p className="mt-2 text-[11px] font-bold text-slate-400">
+                    {new Date(notification.created_at).toLocaleString(undefined, {
+                      dateStyle: "medium",
+                      timeStyle: "short",
+                    })}
+                  </p>
+                </div>
+              </div>
+            </article>
+          ))
+        )}
+      </div>
+    </section>
+  );
+}
+
 function ProfileView({ user }) {
   const { t, i18n } = useTranslation();
   const [form, setForm] = useState({
@@ -394,6 +497,7 @@ export function PatientDashboard({ user, logout, activeSubView, onNavigate }) {
   const { t, i18n } = useTranslation();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
   const windowWidth = useWindowWidth();
   const isDesktop = windowWidth >= 768;
   const SIDEBAR_W = collapsed ? 68 : 224; // px
@@ -402,8 +506,22 @@ export function PatientDashboard({ user, logout, activeSubView, onNavigate }) {
     overview: t('nav.overview'),
     book: t('nav.book'),
     appointments: t('nav.appointments'),
+    notifications: t('nav.notifications'),
     profile: t('nav.profile'),
   };
+
+  const loadNotificationSummary = useCallback(async function loadNotificationSummary() {
+    try {
+      const { data } = await api.get("/notifications/summary");
+      setUnreadCount(data.unread_count || 0);
+    } catch {
+      setUnreadCount(0);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadNotificationSummary();
+  }, [activeSubView, loadNotificationSummary]);
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 flex">
@@ -475,8 +593,18 @@ export function PatientDashboard({ user, logout, activeSubView, onNavigate }) {
               compact
             />
 
-            <button className="p-2 rounded-xl border border-slate-200 text-slate-500 hover:bg-slate-50 cursor-pointer relative">
+            <button
+              className="p-2 rounded-xl border border-slate-200 text-slate-500 hover:bg-slate-50 cursor-pointer relative"
+              onClick={() => onNavigate("#/notifications")}
+              title={t("nav.notifications")}
+              type="button"
+            >
               <Bell size={16} />
+              {unreadCount > 0 && (
+                <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-600 px-1 text-[9px] font-extrabold text-white">
+                  {unreadCount > 9 ? "9+" : unreadCount}
+                </span>
+              )}
             </button>
 
             <div className="hidden sm:flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5">
@@ -498,6 +626,7 @@ export function PatientDashboard({ user, logout, activeSubView, onNavigate }) {
           {activeSubView === "overview" && <Overview user={user} />}
           {activeSubView === "book" && <BookingView />}
           {activeSubView === "appointments" && <AppointmentsView />}
+          {activeSubView === "notifications" && <NotificationsView onRead={loadNotificationSummary} />}
           {activeSubView === "profile" && <ProfileView user={user} />}
         </main>
       </div>

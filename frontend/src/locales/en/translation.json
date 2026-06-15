@@ -5,6 +5,7 @@
     "home": "Home",
     "book": "Book Appointment",
     "appointments": "My Appointments",
+    "notifications": "Notifications",
     "overview": "Overview",
     "profile": "My Profile"
   },
@@ -125,6 +126,13 @@
       "completed": "Completed",
       "cancelled": "Cancelled"
     }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "subtitle": "Appointment updates and booking activity.",
+    "empty": "No notifications yet.",
+    "loadError": "Failed to load notifications.",
+    "new": "New"
   },
   "doctors": {
     "title": "Available Doctors",

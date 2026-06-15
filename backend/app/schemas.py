@@ -177,3 +177,20 @@ class LanguageDetectionLogRead(BaseModel):
     created_at: datetime
 
     model_config = {"from_attributes": True}
+
+
+class NotificationRead(BaseModel):
+    id: str
+    user_id: str
+    appointment_id: str | None
+    type: str
+    title: str
+    message: str
+    is_read: bool
+    created_at: datetime
+
+    model_config = {"from_attributes": True}
+
+
+class NotificationSummary(BaseModel):
+    unread_count: int

@@ -11,6 +11,7 @@ const PATIENT_ROUTES = {
   '#/patient':           'overview',
   '#/book':              'book',
   '#/my-appointments':   'appointments',
+  '#/notifications':      'notifications',
   '#/profile':           'profile',
 };
 

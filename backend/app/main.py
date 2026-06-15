@@ -9,7 +9,7 @@ from .auth import create_access_token, get_current_user, hash_password, require_
 from .config import get_settings
 from .database import get_db
 from .language import detector
-from .models import Appointment, Department, DoctorProfile, DoctorSchedule, LanguageDetectionLog, User
+from .models import Appointment, Department, DoctorProfile, DoctorSchedule, LanguageDetectionLog, Notification, User
 from .schemas import (
     AvailableSlotRead,
     AppointmentCreate,
@@ -28,6 +28,8 @@ from .schemas import (
     LanguageDetectionResponse,
     LanguageDetectionLogRead,
     LoginRequest,
+    NotificationRead,
+    NotificationSummary,
     TokenResponse,
     UserCreate,
     UserRead,
@@ -286,6 +288,8 @@ def book_appointment(
     appointment_data["appointment_date"] = appointment_date
     appointment = Appointment(patient_id=current_user.id, **appointment_data)
     db.add(appointment)
+    db.flush()
+    create_appointment_notification(db, appointment, "booked")
     db.commit()
     db.refresh(appointment)
     return get_appointment_read(db, appointment.id)
@@ -355,6 +359,7 @@ def cancel_appointment(
         raise HTTPException(status_code=400, detail=f"Cannot cancel a {appointment.status} appointment")
 
     appointment.status = "cancelled"
+    create_appointment_notification(db, appointment, "cancelled")
     db.commit()
     db.refresh(appointment)
     return get_appointment_read(db, appointment.id)
@@ -377,6 +382,7 @@ def reschedule_appointment(
 
     appointment.appointment_date = appointment_date
     appointment.status = "pending"
+    create_appointment_notification(db, appointment, "rescheduled")
     db.commit()
     db.refresh(appointment)
     return get_appointment_read(db, appointment.id)
@@ -394,9 +400,79 @@ def update_appointment_status(
         raise HTTPException(status_code=404, detail="Appointment not found")
 
     appointment.status = payload.status
+    create_appointment_notification(db, appointment, payload.status)
     db.commit()
     db.refresh(appointment)
     return get_appointment_read(db, appointment.id)
+
+
+@app.get("/notifications", response_model=list[NotificationRead])
+def list_notifications(
+    current_user: User = Depends(require_patient),
+    db: Session = Depends(get_db),
+) -> list[Notification]:
+    return list(db.scalars(
+        select(Notification)
+        .where(Notification.user_id == current_user.id)
+        .order_by(Notification.created_at.desc())
+    ))
+
+
+@app.get("/notifications/summary", response_model=NotificationSummary)
+def notification_summary(
+    current_user: User = Depends(require_patient),
+    db: Session = Depends(get_db),
+) -> NotificationSummary:
+    unread_count = db.scalar(
+        select(func.count(Notification.id)).where(
+            Notification.user_id == current_user.id,
+            Notification.is_read.is_(False),
+        )
+    ) or 0
+    return NotificationSummary(unread_count=unread_count)
+
+
+@app.patch("/notifications/read", response_model=NotificationSummary)
+def mark_notifications_read(
+    current_user: User = Depends(require_patient),
+    db: Session = Depends(get_db),
+) -> NotificationSummary:
+    notifications = list(db.scalars(
+        select(Notification).where(
+            Notification.user_id == current_user.id,
+            Notification.is_read.is_(False),
+        )
+    ))
+    for notification in notifications:
+        notification.is_read = True
+    db.commit()
+    return NotificationSummary(unread_count=0)
+
+
+def create_appointment_notification(db: Session, appointment: Appointment, event_type: str) -> None:
+    title_map = {
+        "booked": "Appointment booked",
+        "pending": "Appointment pending",
+        "confirmed": "Appointment confirmed",
+        "completed": "Appointment completed",
+        "cancelled": "Appointment cancelled",
+        "rescheduled": "Appointment rescheduled",
+    }
+    message_map = {
+        "booked": "Your appointment was booked and is waiting for confirmation.",
+        "pending": "Your appointment is pending confirmation.",
+        "confirmed": "Your appointment has been confirmed.",
+        "completed": "Your appointment has been marked as completed.",
+        "cancelled": "Your appointment has been cancelled.",
+        "rescheduled": "Your appointment was rescheduled and is waiting for confirmation.",
+    }
+    db.add(Notification(
+        user_id=appointment.patient_id,
+        appointment_id=appointment.id,
+        type=f"appointment_{event_type}",
+        title=title_map.get(event_type, "Appointment updated"),
+        message=message_map.get(event_type, "Your appointment was updated."),
+    ))
 
 
 def get_patient_appointment(db: Session, appointment_id: str, patient_id: str) -> Appointment:
@@ -547,6 +623,7 @@ def delete_doctor_profile(
     ))
     for appt in active_appointments:
         appt.status = "cancelled"
+        create_appointment_notification(db, appt, "cancelled")
 
     db.delete(doctor)
     db.commit()
